@@ -18,9 +18,18 @@ function Card({ children, unactive }: { children: any, unactive?: boolean }) {
 
 }
 
+function GithubIcon() {
+  return (
+    <a className={styles.github} href="https://github.com/vincentdchan/LichenScript">
+      <img src="/GitHub-Mark-120px-plus.png" />
+    </a>
+  )
+}
+
 export default function Home() {
   return (
     <div className={styles.container}>
+      <GithubIcon />
       <Head>
         <title>LichenScript</title>
         <meta name="description" content="A lightweight language compiled to JavaScript/C." />
