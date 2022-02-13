@@ -22,7 +22,7 @@ function Card({ children, unactive }: { children: any, unactive?: boolean }) {
 function GithubIcon() {
   return (
     <a className={styles.github} href="https://github.com/vincentdchan/LichenScript">
-      <Image src="/GitHub-Mark-120px-plus.png" />
+      <Image src="/GitHub-Mark-120px-plus.png" width={36} height={36} />
     </a>
   )
 }
