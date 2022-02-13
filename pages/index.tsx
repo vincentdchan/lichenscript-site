@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 function Card({ children, unactive }: { children: any, unactive?: boolean }) {
@@ -21,7 +22,7 @@ function Card({ children, unactive }: { children: any, unactive?: boolean }) {
 function GithubIcon() {
   return (
     <a className={styles.github} href="https://github.com/vincentdchan/LichenScript">
-      <img src="/GitHub-Mark-120px-plus.png" />
+      <Image src="/GitHub-Mark-120px-plus.png" />
     </a>
   )
 }
