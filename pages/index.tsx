@@ -1,6 +1,23 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+function Card({ children, unactive }: { children: any, unactive?: boolean }) {
+  let className;
+  if (unactive) {
+    className = styles.card + ' ' + styles.unactive;
+  } else {
+    className = styles.card;
+  }
+  return (
+    <div
+      className={className}
+    >
+      {children}
+    </div>
+  )
+
+}
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -24,6 +41,27 @@ export default function Home() {
         <p className={styles.description}>
           A lightweight language compiled to JavaScript/C.
         </p>
+
+        <div className={styles.grid}>
+          <Card>
+            <h2>Target C</h2>
+            <ul className={styles.justifyList}>
+              <li>Portable(WebAssembly/Mobile)</li>
+              <li>AOT compilation</li>
+              <li>Fast cold start</li>
+              <li>Lightweight runtime</li>
+              <li>Use the library of C/C++/Rust through C-ABI</li>
+            </ul>
+          </Card>
+          <Card unactive>
+            <h2>Target JavaScript(WIP)</h2>
+            <ul className={styles.justifyList}>
+              <li>Low overhead</li>
+              <li>Readable</li>
+              <li>Isolate environment</li>
+            </ul>
+          </Card>
+        </div>
 
         {/* <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
