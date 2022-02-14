@@ -37,6 +37,18 @@ export default function Home() {
         <title>LichenScript</title>
         <meta name="description" content="A lightweight language compiled to JavaScript/C." />
         <link rel="icon" href="/favicon.ico" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-322TTNCM99"/>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-322TTNCM99');
+            `,
+          }}
+        />
       </Head>
 
       <main className={styles.main}>
