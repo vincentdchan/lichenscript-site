@@ -1,6 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import dynamic from 'next/dynamic';
+
+const CodeRunner = dynamic(() => import('./codeRunner'), {
+  ssr: false
+})
 
 function Card({ children, unactive }: { children: any, unactive?: boolean }) {
   let className;
@@ -21,7 +26,7 @@ function Card({ children, unactive }: { children: any, unactive?: boolean }) {
 
 function GithubIcon() {
   return (
-    <a className={styles.github} href="https://github.com/vincentdchan/LichenScript">
+    <a href="https://github.com/lichenscript/lichenscript">
       <Image src="/GitHub-Mark-120px-plus.png" width={36} height={36} />
     </a>
   )
@@ -30,11 +35,25 @@ function GithubIcon() {
 export default function Home() {
   return (
     <div className={styles.container}>
-      <GithubIcon />
+      <div className={styles.navbar}>
+        <GithubIcon />
+      </div>
       <Head>
         <title>LichenScript</title>
         <meta name="description" content="A lightweight language compiled to JavaScript/C." />
         <link rel="icon" href="/favicon.ico" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-322TTNCM99"/>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-322TTNCM99');
+            `,
+          }}
+        />
       </Head>
 
       <main className={styles.main}>
@@ -52,6 +71,22 @@ export default function Home() {
           A lightweight language compiled to JavaScript/C.
         </p>
 
+        <div className={styles.docContainer}>
+          <a className={styles.docButton} href="https://github.com/lichenscript/lichenscript">Github</a>
+          <a className={styles.docButton} href="https://docs.lichenscript.com/">Documents</a>
+        </div>
+
+        <div className={styles.feature}>
+          <Card>
+            <h2>Features</h2>
+            <ul className={styles.justifyList}>
+              <li>Modern syntaxes, close to TypeScript/JavaScript</li>
+              <li>Static typing</li>
+              <li>Pattern matching</li>
+            </ul>
+          </Card>
+        </div>
+
         <div className={styles.grid}>
           <Card>
             <h2>Target C</h2>
@@ -63,8 +98,8 @@ export default function Home() {
               <li>Use the library of C/C++/Rust through C-ABI</li>
             </ul>
           </Card>
-          <Card unactive>
-            <h2>Target JavaScript(WIP)</h2>
+          <Card>
+            <h2>Target JavaScript</h2>
             <ul className={styles.justifyList}>
               <li>Low overhead</li>
               <li>Readable</li>
@@ -72,6 +107,8 @@ export default function Home() {
             </ul>
           </Card>
         </div>
+
+        <CodeRunner />
 
         {/* <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>

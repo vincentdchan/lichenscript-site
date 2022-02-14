@@ -3,16 +3,20 @@ lockfileVersion: 5.3
 specifiers:
   '@types/node': ^17.0.17
   '@types/react': ^17.0.39
+  codemirror: ^5.65.1
   eslint: 8.7.0
   eslint-config-next: ^12.0.8
   next: ^12.0.8
   react: 17.0.2
+  react-codemirror2: ^7.2.1
   react-dom: 17.0.2
   typescript: ^4.5.5
 
 dependencies:
+  codemirror: 5.65.1
   next: 12.0.10_react-dom@17.0.2+react@17.0.2
   react: 17.0.2
+  react-codemirror2: 7.2.1_codemirror@5.65.1+react@17.0.2
   react-dom: 17.0.2_react@17.0.2
 
 devDependencies:
@@ -426,6 +430,10 @@ packages:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
     dev: true
+
+  /codemirror/5.65.1:
+    resolution: {integrity: sha512-s6aac+DD+4O2u1aBmdxhB7yz2XU7tG3snOyQ05Kxifahz7hoxnfxIRHxiCSEv3TUC38dIVH8G+lZH9UWSfGQxA==}
+    dev: false
 
   /color-convert/2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
@@ -1443,6 +1451,16 @@ packages:
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
+
+  /react-codemirror2/7.2.1_codemirror@5.65.1+react@17.0.2:
+    resolution: {integrity: sha512-t7YFmz1AXdlImgHXA9Ja0T6AWuopilub24jRaQdPVbzUJVNKIYuy3uCFZYa7CE5S3UW6SrSa5nAqVQvtzRF9gw==}
+    peerDependencies:
+      codemirror: 5.x
+      react: '>=15.5 <=16.x'
+    dependencies:
+      codemirror: 5.65.1
+      react: 17.0.2
+    dev: false
 
   /react-dom/17.0.2_react@17.0.2:
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
