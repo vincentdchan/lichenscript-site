@@ -1,6 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import dynamic from 'next/dynamic';
+
+const CodeRunner = dynamic(() => import('./codeRunner'), {
+  ssr: false
+})
 
 function Card({ children, unactive }: { children: any, unactive?: boolean }) {
   let className;
@@ -101,6 +106,13 @@ export default function Home() {
               <li>Isolate environment</li>
             </ul>
           </Card>
+        </div>
+
+        <div className={styles.codeRunnerContainer}>
+          <h2>Playground</h2>
+          <div className={styles.codeRunner}>
+            <CodeRunner />
+          </div>
         </div>
 
         {/* <div className={styles.grid}>
