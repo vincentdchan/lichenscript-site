@@ -52,6 +52,17 @@ export default function Home() {
           A lightweight language compiled to JavaScript/C.
         </p>
 
+        <div className={styles.feature}>
+          <Card>
+            <h2>Features</h2>
+            <ul className={styles.justifyList}>
+              <li>Modern syntaxes, close to TypeScript/JavaScript</li>
+              <li>Static typing</li>
+              <li>Pattern matching</li>
+            </ul>
+          </Card>
+        </div>
+
         <div className={styles.grid}>
           <Card>
             <h2>Target C</h2>
