@@ -108,12 +108,7 @@ export default function Home() {
           </Card>
         </div>
 
-        <div className={styles.codeRunnerContainer}>
-          <h2>Playground</h2>
-          <div className={styles.codeRunner}>
-            <CodeRunner />
-          </div>
-        </div>
+        <CodeRunner />
 
         {/* <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
