@@ -3,7 +3,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import dynamic from 'next/dynamic';
 
-const CodeRunner = dynamic(() => import('./codeRunner'), {
+const CodeRunner = dynamic(() => import('../components/codeRunner'), {
   ssr: false
 })
 
