@@ -21,7 +21,7 @@ function Card({ children, unactive }: { children: any, unactive?: boolean }) {
 
 function GithubIcon() {
   return (
-    <a href="https://github.com/vincentdchan/LichenScript">
+    <a href="https://github.com/lichenscript/lichenscript">
       <Image src="/GitHub-Mark-120px-plus.png" width={36} height={36} />
     </a>
   )
@@ -67,7 +67,7 @@ export default function Home() {
         </p>
 
         <div className={styles.docContainer}>
-          <a className={styles.docButton} href="https://github.com/vincentdchan/LichenScript">Github</a>
+          <a className={styles.docButton} href="https://github.com/lichenscript/lichenscript">Github</a>
           <a className={styles.docButton} href="https://docs.lichenscript.com/">Documents</a>
         </div>
 
