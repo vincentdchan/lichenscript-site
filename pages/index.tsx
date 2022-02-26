@@ -93,8 +93,8 @@ export default function Home() {
               <li>Use the library of C/C++/Rust through C-ABI</li>
             </ul>
           </Card>
-          <Card unactive>
-            <h2>Target JavaScript(WIP)</h2>
+          <Card>
+            <h2>Target JavaScript</h2>
             <ul className={styles.justifyList}>
               <li>Low overhead</li>
               <li>Readable</li>
