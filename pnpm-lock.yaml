@@ -6,6 +6,7 @@ specifiers:
   codemirror: ^5.65.1
   eslint: 8.7.0
   eslint-config-next: ^12.0.8
+  lichenscript-web: ^0.1.0
   next: ^12.0.8
   react: 17.0.2
   react-codemirror2: ^7.2.1
@@ -14,6 +15,7 @@ specifiers:
 
 dependencies:
   codemirror: 5.65.1
+  lichenscript-web: 0.1.0
   next: 12.0.10_react-dom@17.0.2+react@17.0.2
   react: 17.0.2
   react-codemirror2: 7.2.1_codemirror@5.65.1+react@17.0.2
@@ -1174,6 +1176,10 @@ packages:
       prelude-ls: 1.2.1
       type-check: 0.4.0
     dev: true
+
+  /lichenscript-web/0.1.0:
+    resolution: {integrity: sha512-YibvuTtmdKkDefsJ6j7n9WsGjg0DXxSX48jXh4RxQTlj9oFvmAA5VkOJruNVhPoGORyKmTt2Y/nLD7kJuRkJYw==}
+    dev: false
 
   /locate-path/2.0.0:
     resolution: {integrity: sha1-K1aLJl7slExtnA3pw9u7ygNUzY4=}
