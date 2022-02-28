@@ -7,8 +7,13 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/xq-light.css';
 import 'codemirror/mode/javascript/javascript';
 
+interface MessageLine {
+  type: 'info' | 'error',
+  content: string,
+}
+
 interface PreviewState {
-  lines: string[]
+  lines: MessageLine[]
 }
 
 const theme = 'xq-light';
@@ -16,6 +21,7 @@ const theme = 'xq-light';
 const defaultValue = `
 function main() {
   print("Hello World");
+  print("你好世界");
 }
 `;
 
@@ -35,8 +41,11 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
     this.__editor.setValue(defaultValue);
   }
 
-  dummyConsoleLog = (collector: string[]) => (content: string) => {
-    collector.push(content);
+  dummyConsoleLog = (collector: MessageLine[]) => (content: string) => {
+    collector.push({
+      type: 'info',
+      content,
+    });
   }
 
   onRunClicked = () => {
@@ -57,9 +66,12 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
       if (errorName.indexOf("ParseError") >= 0) {
         const errors = e.errors || [];
 
-        const tmp = [];
+        const tmp: MessageLine[] = [];
         for (const errorLine of errors) {
-          tmp.push(`${errorLine.line}:${errorLine.column}: ${errorLine.content}`);
+          tmp.push({
+            type: 'error',
+            content: `${errorLine.line}:${errorLine.column}: ${errorLine.content}`,
+          });
         }
         this.setState({
           lines: [...this.state.lines, ...tmp],
@@ -67,9 +79,12 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
       } else if (errorName.indexOf("TypeCheckError") >= 0) {
         const errors = e.errors || [];
 
-        const tmp = [];
+        const tmp: MessageLine[] = [];
         for (const errorLine of errors) {
-          tmp.push(`${errorLine.line}:${errorLine.column}: ${errorLine.content}`);
+          tmp.push({
+            type: 'error',
+            content: `${errorLine.line}:${errorLine.column}: ${errorLine.content}`
+          });
         }
         this.setState({
           lines: [...this.state.lines, ...tmp],
@@ -113,9 +128,13 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
             </button>
           </div>
           <div>
-            {this.state.lines.map((lineContent, index) =>
-              <p className={styles.outputLine} key={`line-${index}`}>{lineContent}</p>
-            )}
+            {this.state.lines.map((lineContent, index) => {
+              let clsName = styles.outputLine;
+              if (lineContent.type === 'error') {
+                clsName += ' ' + styles.errorOutputLine;
+              }
+              return <p className={clsName} key={`line-${index}`}>{lineContent.content}</p>
+            })}
           </div>
         </div>
     )
