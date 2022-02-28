@@ -35,22 +35,50 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
     this.__editor.setValue(defaultValue);
   }
 
-  dummyConsoleLog = (content: string) => {
-    this.setState({
-      lines: [...this.state.lines, content]
-    });
+  dummyConsoleLog = (collector: string[]) => (content: string) => {
+    collector.push(content);
   }
 
   onRunClicked = () => {
     const content = this.__editor.getValue();
-    const result = lsc.compile(content);
-
     const originalLog = console.log;
-    console.log = this.dummyConsoleLog
     try {
+      const result = lsc.compile(content);
+      const tmp = [];
+      console.log = this.dummyConsoleLog(tmp);
       const fun = new Function(result);
       fun();
 
+      this.setState({
+        lines: [...this.state.lines, ...tmp],
+      });
+    } catch (e) {
+      const errorName = e.toString();
+      if (errorName.indexOf("ParseError") >= 0) {
+        const errors = e.errors || [];
+
+        const tmp = [];
+        for (const errorLine of errors) {
+          tmp.push(`${errorLine.line}:${errorLine.column}: ${errorLine.content}`);
+        }
+        this.setState({
+          lines: [...this.state.lines, ...tmp],
+        });
+      } else if (errorName.indexOf("TypeCheckError") >= 0) {
+        const errors = e.errors || [];
+
+        const tmp = [];
+        for (const errorLine of errors) {
+          tmp.push(`${errorLine.line}:${errorLine.column}: ${errorLine.content}`);
+        }
+        this.setState({
+          lines: [...this.state.lines, ...tmp],
+        });
+      } else {
+        this.setState({
+          lines: [...this.state.lines, errorName],
+        });
+      }
     } finally {
       console.log = originalLog;
     }
