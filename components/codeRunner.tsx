@@ -2,14 +2,13 @@ import React, { PureComponent } from 'react';
 import type { Editor } from 'codemirror';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
 import styles from '../styles/CodeRunner.module.css'
+import * as lsc from 'lichenscript-web';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/xq-light.css';
 import 'codemirror/mode/javascript/javascript';
 
 interface PreviewState {
-    exampleKey: string;
-    content: string;
-    errorMsg: string | null;
+  lines: string[]
 }
 
 const theme = 'xq-light';
@@ -24,9 +23,37 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
 
   private __editor: Editor;
 
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      lines: []
+    };
+  }
+
   __onEditorAttatched = (e: Editor) => {
     this.__editor = e;
     this.__editor.setValue(defaultValue);
+  }
+
+  dummyConsoleLog = (content: string) => {
+    this.setState({
+      lines: [...this.state.lines, content]
+    });
+  }
+
+  onRunClicked = () => {
+    const content = this.__editor.getValue();
+    const result = lsc.compile(content);
+
+    const originalLog = console.log;
+    console.log = this.dummyConsoleLog
+    try {
+      const fun = new Function(result);
+      fun();
+
+    } finally {
+      console.log = originalLog;
+    }
   }
 
   render() {
@@ -48,9 +75,19 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
           </div>
           <div className={styles.runButtonContainer}>
             <p style={{ flex: '1', color: 'grey', fontSize: '14px' }}>
-              The code is compiled in our server and eval in your browser.
+              The code is compiled and eval in your browser.
             </p>
-            <button className={styles.runButton}>Run</button>
+            <button
+              className={styles.runButton}
+              onClick={this.onRunClicked}
+            >
+              Run
+            </button>
+          </div>
+          <div>
+            {this.state.lines.map((lineContent, index) =>
+              <p className={styles.outputLine} key={`line-${index}`}>{lineContent}</p>
+            )}
           </div>
         </div>
     )
