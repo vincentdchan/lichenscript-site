@@ -1,11 +1,4 @@
 
-.codeRunnerContainer {
-  width: 960px;
-  max-width: 960px;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
 .codeRunner {
   /* background-color: black; */
   border-radius: 10px;

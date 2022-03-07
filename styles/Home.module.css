@@ -154,6 +154,23 @@
   margin-left: 0.5rem;
 }
 
+.codeRunnerContainer {
+  width: 960px;
+  max-width: 960px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.link {
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+
+.link > a {
+  color: #3a6d8c;
+  margin-right: 12px;;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

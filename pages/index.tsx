@@ -40,7 +40,7 @@ export default function Home() {
       </div>
       <Head>
         <title>LichenScript</title>
-        <meta name="description" content="A lightweight language compiled to JavaScript/C." />
+        <meta name="description" content="A quick and small language compiled to JavaScript/C." />
         <link rel="icon" href="/favicon.ico" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-322TTNCM99"/>
         <script
@@ -68,7 +68,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          A lightweight language compiled to JavaScript/C.
+          A quick and small language compiled to JavaScript/C.
         </p>
 
         <div className={styles.docContainer}>
@@ -108,7 +108,14 @@ export default function Home() {
           </Card>
         </div>
 
-        <CodeRunner />
+        <div className={styles.codeRunnerContainer}>
+          <h2>Playground</h2>
+          <div className={styles.link}>
+            <a href="https://github.com/lichenscript/lichenscript/tree/master/examples">Examples</a>
+            <a href="https://docs.lichenscript.com/language-guide/the-basics">Tutorials</a>
+          </div>
+          <CodeRunner />
+        </div>
 
         {/* <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>

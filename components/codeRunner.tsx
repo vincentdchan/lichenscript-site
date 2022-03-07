@@ -102,42 +102,41 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
 
   render() {
     return (
-        <div className={styles.codeRunnerContainer}>
-          <h2>Playground</h2>
-          <div className={styles.codeRunner}>
-            <CodeMirror
-              editorDidMount={this.__onEditorAttatched}
-              options={{
-                mode: 'javascript',
-                theme,
-                lineNumbers: true,
-              }}
-              onChange={(editor, data, value) => {
-                //this.computeReverse(value);
-              }}
-            />
-          </div>
-          <div className={styles.runButtonContainer}>
-            <p style={{ flex: '1', color: 'grey', fontSize: '14px' }}>
-              The code is compiled and eval in your browser.
-            </p>
-            <button
-              className={styles.runButton}
-              onClick={this.onRunClicked}
-            >
-              Run
-            </button>
-          </div>
-          <div>
-            {this.state.lines.map((lineContent, index) => {
-              let clsName = styles.outputLine;
-              if (lineContent.type === 'error') {
-                clsName += ' ' + styles.errorOutputLine;
-              }
-              return <p className={clsName} key={`line-${index}`}>{lineContent.content}</p>
-            })}
-          </div>
+      <>
+        <div className={styles.codeRunner}>
+          <CodeMirror
+            editorDidMount={this.__onEditorAttatched}
+            options={{
+              mode: 'javascript',
+              theme,
+              lineNumbers: true,
+            }}
+            onChange={(editor, data, value) => {
+              //this.computeReverse(value);
+            }}
+          />
         </div>
+        <div className={styles.runButtonContainer}>
+          <p style={{ flex: '1', color: 'grey', fontSize: '14px' }}>
+            The code is compiled and eval in your browser.
+          </p>
+          <button
+            className={styles.runButton}
+            onClick={this.onRunClicked}
+          >
+            Run
+          </button>
+        </div>
+        <div>
+          {this.state.lines.map((lineContent, index) => {
+            let clsName = styles.outputLine;
+            if (lineContent.type === 'error') {
+              clsName += ' ' + styles.errorOutputLine;
+            }
+            return <p className={clsName} key={`line-${index}`}>{lineContent.content}</p>
+          })}
+        </div>
+      </>
     )
 
   }
