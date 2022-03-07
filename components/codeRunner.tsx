@@ -90,6 +90,7 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
           lines: [...this.state.lines, ...tmp],
         });
       } else {
+        console.error(e);
         this.setState({
           lines: [...this.state.lines, errorName],
         });
