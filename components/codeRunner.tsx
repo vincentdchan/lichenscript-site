@@ -3,6 +3,7 @@ import type { Editor } from 'codemirror';
 import { UnControlled as CodeMirror } from 'react-codemirror2';
 import styles from '../styles/CodeRunner.module.css'
 import * as lsc from 'lichenscript-web';
+import { createPlaygroundURL, decompressCodeFromURL } from '../utils/playgroundURL';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/xq-light.css';
 import 'codemirror/mode/javascript/javascript';
@@ -13,7 +14,9 @@ interface MessageLine {
 }
 
 interface PreviewState {
-  lines: MessageLine[]
+  lines: MessageLine[];
+  showToast: boolean;
+  toastContent: string;
 }
 
 const theme = 'xq-light';
@@ -28,17 +31,22 @@ function main() {
 class CodeRunner extends PureComponent<{}, PreviewState> {
 
   private __editor: Editor;
+  private __lastShareURL: string = '';
+  private __lastTimer: NodeJS.Timeout = null;
 
   constructor(props: {}) {
     super(props);
     this.state = {
-      lines: []
+      lines: [],
+      showToast: false,
+      toastContent: '',
     };
   }
 
   __onEditorAttatched = (e: Editor) => {
+    const initialContent = decompressCodeFromURL() || defaultValue;
     this.__editor = e;
-    this.__editor.setValue(defaultValue);
+    this.__editor.setValue(initialContent);
   }
 
   dummyConsoleLog = (collector: MessageLine[]) => (content: string) => {
@@ -100,7 +108,33 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
     }
   }
 
+  onShareClicked = async () => {
+    const url = createPlaygroundURL(this.__editor);
+    const isSameURL = url === this.__lastShareURL;
+
+    try {
+      if (!isSameURL) {
+        await navigator.clipboard.writeText(url);
+      }
+      this.__lastShareURL = url;
+      clearTimeout(this.__lastTimer);
+      this.setState({
+        showToast: true,
+        toastContent: 'URL copied to clipboard',
+      }, () => {
+        this.__lastTimer = setTimeout(() => {
+          this.setState({
+            showToast: false
+          });
+        }, 2000);
+      })
+    } catch {
+      // do nothing.
+    }
+  }
+
   render() {
+    const { lines, showToast, toastContent } = this.state;
     return (
       <>
         <div className={styles.codeRunner}>
@@ -121,6 +155,13 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
             The code is compiled and eval in your browser.
           </p>
           <button
+            className={styles.shareButton}
+            onClick={this.onShareClicked}
+            disabled={this.__editor && !this.__editor.getValue().length}
+          >
+            Share
+          </button>
+          <button
             className={styles.runButton}
             onClick={this.onRunClicked}
           >
@@ -128,7 +169,7 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
           </button>
         </div>
         <div>
-          {this.state.lines.map((lineContent, index) => {
+          {lines.map((lineContent, index) => {
             let clsName = styles.outputLine;
             if (lineContent.type === 'error') {
               clsName += ' ' + styles.errorOutputLine;
@@ -136,6 +177,10 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
             return <p className={clsName} key={`line-${index}`}>{lineContent.content}</p>
           })}
         </div>
+        
+        {showToast && <div className={styles.copyToast}>
+          {toastContent}
+        </div>}
       </>
     )
 

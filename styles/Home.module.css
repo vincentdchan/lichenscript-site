@@ -159,6 +159,7 @@
   max-width: 960px;
   padding-left: 16px;
   padding-right: 16px;
+  position: relative;
 }
 
 .link {
