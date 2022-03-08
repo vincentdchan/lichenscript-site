@@ -12,7 +12,8 @@
   /* justify-content: right; */
 }
 
-.runButton {
+.runButton,
+.shareButton {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   text-align: center;
@@ -21,11 +22,15 @@
   border: 1px solid #141414;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
+  margin-right: 10px;
 }
 
 .runButton:hover,
 .runButton:focus,
-.runButton:active {
+.runButton:active,
+.shareButton:hover,
+.shareButton:focus,
+.shareButton:active {
   color: #0070f3;
   border-color: #0070f3;
 }
@@ -39,4 +44,15 @@
 
 .errorOutputLine {
   color: red;
+}
+
+.copyToast {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 20px;
 }
