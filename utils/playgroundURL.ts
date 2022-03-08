@@ -5,9 +5,9 @@ const PLAYGROUND_HASH_PREFIX = 'playground';
 
 export function createPlaygroundURL(editor: Editor) {
   const text = editor.getValue();
-  const url = new URL(location.href);
-  url.hash = `#${PLAYGROUND_HASH_PREFIX}/${compressToEncodedURIComponent(text)}`;
-  return url.toString();
+  const urlObj = new URL(location.href);
+  urlObj.hash = `#${PLAYGROUND_HASH_PREFIX}/${compressToEncodedURIComponent(text)}`;
+  return urlObj;
 }
 
 export function decompressCodeFromURL() {

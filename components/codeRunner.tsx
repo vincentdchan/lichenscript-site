@@ -109,14 +109,16 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
   }
 
   onShareClicked = async () => {
-    const url = createPlaygroundURL(this.__editor);
-    const isSameURL = url === this.__lastShareURL;
+    const urlObj = createPlaygroundURL(this.__editor);
+    const urlStr = urlObj.toString();
+    const isSameURL = urlStr === this.__lastShareURL;
 
     try {
       if (!isSameURL) {
-        await navigator.clipboard.writeText(url);
+        location.hash = urlObj.hash;
+        await navigator.clipboard.writeText(urlStr);
       }
-      this.__lastShareURL = url;
+      this.__lastShareURL = urlStr;
       clearTimeout(this.__lastTimer);
       this.setState({
         showToast: true,
