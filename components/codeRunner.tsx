@@ -33,6 +33,7 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
   private __editor: Editor;
   private __lastShareURL: string = '';
   private __lastTimer: NodeJS.Timeout = null;
+  private __containerRef: React.RefObject<HTMLDivElement> = React.createRef();
 
   constructor(props: {}) {
     super(props);
@@ -47,6 +48,21 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
     const initialContent = decompressCodeFromURL() || defaultValue;
     this.__editor = e;
     this.__editor.setValue(initialContent);
+  }
+
+  componentDidMount(): void {
+    const playgroundURL = decompressCodeFromURL();
+    if (!playgroundURL) {
+      return;
+    }
+
+    if (typeof window != 'undefined' && window.scroll) {
+      const y = this.__containerRef.current.getBoundingClientRect().top + window.scrollY;
+      window.scroll({
+        top: y,
+        behavior: 'smooth'
+      });
+    }
   }
 
   dummyConsoleLog = (collector: MessageLine[]) => (content: string) => {
@@ -139,7 +155,7 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
     const { lines, showToast, toastContent } = this.state;
     return (
       <>
-        <div className={styles.codeRunner}>
+        <div className={styles.codeRunner} ref={this.__containerRef}>
           <CodeMirror
             editorDidMount={this.__onEditorAttatched}
             options={{
