@@ -113,6 +113,7 @@ export default function Home() {
           <div className={styles.link}>
             <a href="https://github.com/lichenscript/lichenscript/tree/master/examples">Examples</a>
             <a href="https://docs.lichenscript.com/language-guide/the-basics">Tutorials</a>
+            <a href="https://github.com/lichenscript/lichenscript/issues">Issues</a>
           </div>
           <CodeRunner />
         </div>
