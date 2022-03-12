@@ -73,6 +73,9 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
   }
 
   onRunClicked = () => {
+    if (typeof window !== 'undefined' && typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', 'run_code');
+    }
     const content = this.__editor.getValue();
     const originalLog = console.log;
     try {
@@ -125,6 +128,10 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
   }
 
   onShareClicked = async () => {
+    if (typeof window !== 'undefined' && typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('event', 'share_code');
+    }
+
     const urlObj = createPlaygroundURL(this.__editor);
     const urlStr = urlObj.toString();
     const isSameURL = urlStr === this.__lastShareURL;
