@@ -79,11 +79,10 @@ class CodeRunner extends PureComponent<{}, PreviewState> {
     const content = this.__editor.getValue();
     const originalLog = console.log;
     try {
-      const result = lsc.compile(content);
+      const compileResult = lsc.compile(content);
       const tmp = [];
       console.log = this.dummyConsoleLog(tmp);
-      const fun = new Function(result);
-      fun();
+      compileResult.execute([]);
 
       this.setState({
         lines: [...this.state.lines, ...tmp],
