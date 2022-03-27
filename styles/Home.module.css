@@ -186,6 +186,20 @@
     max-width: none;
     min-width: unset;
   }
+  .docContainer {
+    flex-direction: column;
+    width: 100%;
+    padding-left: 1rem;;
+    padding-right: 1rem;;
+  }
+  .docButton {
+    display: block;
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
   .codeRunnerContainer {
     width: 100%;
     max-width: none;
