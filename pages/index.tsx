@@ -74,6 +74,7 @@ export default function Home() {
         <div className={styles.docContainer}>
           <a className={styles.docButton} href="https://github.com/lichenscript/lichenscript">Github</a>
           <a className={styles.docButton} href="https://docs.lichenscript.com/">Documents</a>
+          <a className={styles.docButton} href="https://docs.lichenscript.com/zh">中文文档</a>
         </div>
 
         <div className={styles.feature}>
