@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "codemirror": "^5.65.2",
+    "lichenscript": "0.5.2",
     "lichenscript-web": "0.5.1",
     "lz-string": "^1.4.4",
     "next": "^12.1.0",

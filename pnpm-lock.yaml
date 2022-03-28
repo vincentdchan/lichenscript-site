@@ -8,6 +8,7 @@ specifiers:
   codemirror: ^5.65.2
   eslint: 8.7.0
   eslint-config-next: ^12.1.0
+  lichenscript: 0.5.2
   lichenscript-web: 0.5.1
   lz-string: ^1.4.4
   next: ^12.1.0
@@ -18,6 +19,7 @@ specifiers:
 
 dependencies:
   codemirror: 5.65.2
+  lichenscript: 0.5.2
   lichenscript-web: 0.5.1
   lz-string: 1.4.4
   next: 12.1.0_react-dom@17.0.2+react@17.0.2
@@ -1198,8 +1200,41 @@ packages:
       type-check: 0.4.0
     dev: true
 
+  /lichenscript-darwin-arm64/0.5.2:
+    resolution: {integrity: sha512-bjpFoxE8jSAfolkX60FD7G8nO7PaLBd99BBByQA5oIygX4j2jgtcVtbXF+90g+edfLb52YAvia6qCZwRqN8HGQ==}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /lichenscript-darwin-x64/0.5.2:
+    resolution: {integrity: sha512-ITjChJV+lTmYroaHSvks3bc3x3JxyeJI9el5iEvhT3fVYm139b3wGardGPOqzjMN1T+MvdG5thNULBwIQdZAYA==}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /lichenscript-linux-x64/0.5.2:
+    resolution: {integrity: sha512-FELiPTYONQuY+besROCOfIcVowveM0XGL7MRTbqp5+SzRS8mkqq6siDiFuiCfiteOnsWRx0bmXh9KHyWhvrr7w==}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
   /lichenscript-web/0.5.1:
     resolution: {integrity: sha512-qiOGFB6+jp/d4g5GQXNDFsX9l6qXf4i8shM+o7xznl/SHdOJCNFrOSCnJJCs1uQIJXrJPozK65QiUHXGlWWKaQ==}
+    dev: false
+
+  /lichenscript/0.5.2:
+    resolution: {integrity: sha512-wwlfuZ7R/ftMBDFbhFqfEtmDOWZ6F7yq9cE4Mqhouvn/PIytxrSVgkcKbemwmVDH2YgF/RzQHqNinhbxXDz48g==}
+    hasBin: true
+    optionalDependencies:
+      lichenscript-darwin-arm64: 0.5.2
+      lichenscript-darwin-x64: 0.5.2
+      lichenscript-linux-x64: 0.5.2
     dev: false
 
   /locate-path/2.0.0:
