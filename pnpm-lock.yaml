@@ -9,7 +9,7 @@ specifiers:
   eslint: 8.7.0
   eslint-config-next: ^12.1.0
   lichenscript: 0.5.2
-  lichenscript-web: 0.5.3
+  lichenscript-web: 0.6.0
   lz-string: ^1.4.4
   next: ^12.1.0
   react: 17.0.2
@@ -20,7 +20,7 @@ specifiers:
 dependencies:
   codemirror: 5.65.2
   lichenscript: 0.5.2
-  lichenscript-web: 0.5.3
+  lichenscript-web: 0.6.0
   lz-string: 1.4.4
   next: 12.1.0_react-dom@17.0.2+react@17.0.2
   react: 17.0.2
@@ -1224,8 +1224,8 @@ packages:
     dev: false
     optional: true
 
-  /lichenscript-web/0.5.3:
-    resolution: {integrity: sha512-PYBfgEhuT9szNxNB2DL2EA6Qy+t8MXryFrx8rvGd3frJpiJ66SnjnoVCSn9678+LHyDabLqGLcMIi0pYdPCwYw==}
+  /lichenscript-web/0.6.0:
+    resolution: {integrity: sha512-G0Ih+280VjCPyfrhcyBSwM0GO1oiaQqE9mno4FoA4zXoVxRfH3AHevqxcDOAEO7rdJUh8tggcAmD2JLL3w+f+Q==}
     dev: false
 
   /lichenscript/0.5.2:
